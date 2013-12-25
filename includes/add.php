@@ -1,11 +1,11 @@
 <?php
 include('includes/fn_insert_validations.php');
-$barcode = $serialno = $location = $locationOther = "";
+$barcode =  $serialno = $location = $locationOther = "";
 $assetType = $make = $model = $name = $os = $cpu = $hdsize = $serviceTag = "";
 $ram = $pdate = $condition = $tlp = $notes = "";
 $barcodeError = $serialnoError = $locationError = $locationOtherError = "";
 $returnMsg = "Complete form to add a new asset";
-
+$hasBarcode = "Y";
 include('includes/dbaccess.php');
 if ($dbSuccess) {
     if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["barcode"])) {
@@ -14,6 +14,7 @@ if ($dbSuccess) {
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Collect screen Data with $_POST
         $barcode = clean_input($_POST["barcode"]);
+        $hasbarcode = clean_input($_POST["hasBarcode"]);
         $serialno = clean_input($_POST["serialno"]);
         $location = clean_input($_POST["location"]);
         $locationOther = clean_input($_POST["locationOther"]);
@@ -85,6 +86,7 @@ if ($dbSuccess) {
             $date = date("Y-m-d H:i:s");
             $tAsset_SQLinsert = "INSERT INTO nhi_asset (";
             $tAsset_SQLinsert .= "ass_dps_barcode, ";
+            $tAsset_SQLinsert .= "ass_has_barcode, ";
             $tAsset_SQLinsert .= "ass_type, ";
             $tAsset_SQLinsert .= "ass_make, ";
             $tAsset_SQLinsert .= "ass_service_tag, ";
@@ -106,6 +108,7 @@ if ($dbSuccess) {
 
             $tAsset_SQLinsert .= "VALUES (";
             $tAsset_SQLinsert .= "'" . str_pad($barcode, 10, "0", STR_PAD_LEFT) . "', ";
+            $tAsset_SQLinsert .= "'" . strtoupper($hasBarcode) . "', ";
             $tAsset_SQLinsert .= "'" . $assetType . "', ";
             $tAsset_SQLinsert .= "'" . $make . "', ";
             $tAsset_SQLinsert .= "'" . strtoupper($serviceTag) . "', ";
@@ -159,7 +162,9 @@ if ($dbSuccess) {
             <input type="hidden" name="assetInserted" value="1"/>
             <p><label class="field" for="barcode">DPS Barcode</label>
                 <input type="text" name="barcode" id="barcode" class="textbox-300" autofocus value="<?php echo $barcode; ?>"/>
-                <span class="error"><?php echo $barcodeError ?></span></p>
+                <span class="error"><?php echo $barcodeError ?></span>
+            <label class="field" for="hasBarcode">Barcode?</label>
+                <input type="text" name="hasBarcode" id="hasBarcode" class="textbox-20" value="<?php echo $hasBarcode; ?>"/>
             <p><label class="field" for="serialno">Serial Number</label>
                 <input type="text" name="serialno" id="serialno" class="textbox-300" value="<?php echo $serialno; ?>"/>
                 <span class="error"><?php echo $serialnoError; ?></span></p>

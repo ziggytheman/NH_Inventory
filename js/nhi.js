@@ -1,7 +1,8 @@
 $(document).ready(function() {
     $('#list').dataTable(
             {"bAutoWidth": false}
-    );
+        );
+$('div.dataTables_filter input').focus();
 });
 
 /**
