@@ -53,7 +53,7 @@ and open the template in the editor.
             <?php
             $returnMsg = "";
             include('htconfig/dbConfig.php');
-//include('htconfig/dbConfigprod.php');
+
             if (isset($_GET["next"])) {
                 $location = "includes/" . $_GET["next"];
             } else {
