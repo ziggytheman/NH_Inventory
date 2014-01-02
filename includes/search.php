@@ -23,10 +23,10 @@ if ($dbSuccess) {
             if (count(mysqli_fetch_assoc($tAsset_SQLselect_Query)) > 0) {
                 //if found display edit screen
 
-                header("Location: /nhi/index.php?next=edit.php&barcode=$barcode");
+                header("Location: /index.php?next=edit.php&barcode=$barcode");
             } else {
 
-                header("Location: /nhi/index.php?next=add.php&barcode=$barcode");
+                header("Location: /index.php?next=add.php&barcode=$barcode");
             }
             // else display add screen
         } else {

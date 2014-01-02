@@ -25,7 +25,7 @@ if ($dbSuccess) {
             if (count(mysqli_fetch_assoc($tAsset_SQLselect_Query)) > 0) {
                 //if found display edit screen
 
-                header("Location: /nhi/index.php?next=maininsert.php&barcode=$barcode");
+                header("Location: /index.php?next=maininsert.php&barcode=$barcode");
             } else {
             $errorMsg = dataError("barcode not found");
         }

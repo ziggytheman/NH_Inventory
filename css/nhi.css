@@ -7,6 +7,14 @@ and open the template in the editor.
     Created on : Nov 28, 2013, 8:45:29 PM
     Author     : tony
 */
+h1 {
+    font-size: 200%;
+    font-weight: bold;
+}
+h2 {
+    font-size: 150%;
+    font-weight: bold;
+}
 body {
     width: 960px;
     margin: auto;
@@ -189,7 +197,6 @@ fieldset p {
     background:#d40203;
 }
 #assetDetails{
-
     width: 500px;
     margin: auto;
     border: none;
@@ -201,6 +208,11 @@ fieldset p {
     border: none;
     padding:50px;
     
+}
+#checkDetails{
+     width: 750px;
+    margin: auto;
+    border: none;       
 }
 .tblName {
     font-weight: bold;
@@ -223,6 +235,14 @@ fieldset p {
     border:none;
     border-bottom: 1px solid black;
 }
+.checkDetails table tr{
+    border:none;
+    width1:600px;
+}
+.checkDetails table th{
+    border:none;
+    border-bottom: 1px solid black;
+}
 .links {
     text-decoration: none;	
     padding: 15px;
@@ -236,4 +256,19 @@ fieldset p {
 #colB {
     float:left;
     width:420px;
+}
+input,textArea {
+    border-radius: 0px;
+}
+
+.column1, .column2 {
+    float: left;
+    padding: 0 0 5px 0;
+
+}
+.input-100 {
+   width: 100px;
+    float:left;
+    margin: 5px 0px 0px 10px;
+    padding:1px 1px 1px 5px; 
 }

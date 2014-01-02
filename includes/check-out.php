@@ -38,7 +38,7 @@ if ($dbSuccess) {
                 if ($row = mysqli_fetch_assoc($tCIO_SQLselect_Query)) {
                     $returnMsg = "Asset $barcode already checked out";
                 } else {
-                    header("Location: /nhi/index.php?next=check-outprocess.php&barcode=$barcode");
+                    header("Location: /index.php?next=check-outprocess.php&barcode=$barcode");
                 }
             }else{
                 $returnMsg = "Item not found";

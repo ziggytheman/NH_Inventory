@@ -21,8 +21,19 @@ while ($row = mysqli_fetch_assoc($sql)) {
         $output .= "\n";
     }
     foreach ($row as $idx => $r) {
+  /*      if($idx === 'ass_date_purchased') {
+            $tempdate = $r;
+        } else if($idx === 'ass_condition'){
+            if($r !== "") {
+                $output .='"' . $r . '",';
+            } else {
+                switch ($tempdate) {
+                   case  
+                }
+            }
+        } */
         $output .='"' . $r . '",';
-    }
+    } 
     $output .= "\n";
 }
 header('Content-type: text/csv; charset=utf-8');

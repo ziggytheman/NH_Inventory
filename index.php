@@ -8,6 +8,7 @@ and open the template in the editor.
     <head>
         <meta charset="UTF-8">
         <title>NHI</title>
+        <link rel="stylesheet" type="text/css" href="css/reset.css" /> 
         <link rel="stylesheet" type="text/css" href="css/nhi.css" /> 
 
         <!-- DataTables CSS -->
@@ -44,6 +45,7 @@ and open the template in the editor.
                 <li id="active"><a href="#">File System</a></li>
                 <li> <a href="export.php">Export</a> </li>
                 <li> <a href="backup.php">Backup</a> </li>
+                <li> <a href="index.php?next=testcheckout.php">Check Out Test</a> </li>
             </ul>
         </div> <!--lhs_menu -->
 

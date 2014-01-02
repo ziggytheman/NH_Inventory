@@ -131,7 +131,7 @@ if ($dbSuccess) {
 
         if (mysqli_query($dbSelected, $tAsset_SQLinsert)) {
             $returnMsg = "Asset <strong>" . $barcode . "</strong>";
-            $returnMsg .= " was successfully inserted";
+            $returnMsg .= " was successfully added at " . $date .".";
             $barcode = $serialno = $location = $locationOther = "";
             $assetType = $make = $model = $name = $os = $cpu = $hdsize = $serviceTag = "";
             $ram = $pdate = $condition = $tlp = $notes = "";

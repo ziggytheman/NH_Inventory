@@ -89,7 +89,8 @@ if ($dbSuccess) {
 
         if (mysqli_query($dbSelected, $tAsset_SQLupdate)) {
             $returnMsg = "Asset <strong>" . $barcode . "</strong>";
-            $returnMsg .= " was successfully updated.";
+            $returnMsg .= " was successfully updated at " . $date .".";
+            
             include('includes/common_asset_display.php');
         } else {
             $errorMsg = "FAILED to add update asset.<br />";
@@ -115,12 +116,12 @@ if ($dbSuccess) {
             </legend>
             <input type="hidden" name="assetInserted" value="1"/>
             <p><label class="field" for="barcode">DPS Barcode</label>
-                <input type="text" name="barcode" id="barcode" class="textbox-300" autofocus value="<?php echo $barcode; ?>"/>
+                <input type="text" name="barcode" id="barcode" class="textbox-300" readonly value="<?php echo $barcode; ?>"/>
                 <span class="error"><?php echo $barcodeError ?></span>
                 <label class="field" for="hasBarcode">Barcode?</label>
                 <input type="text" name="hasBarcode" id="hasBarcode" class="textbox-20" value="<?php echo $hasBarcode; ?>"/></p>
             <p><label class="field" for="serialno">Serial Number</label>
-                <input type="text" name="serialno" id="serialno" class="textbox-300" value="<?php echo $serialno; ?>"/>
+                <input type="text" name="serialno" id="serialno" class="textbox-300" autofocus value="<?php echo $serialno; ?>"/>
                 <span class="error"><?php echo $serialnoError; ?></span></p>
 
             <p><label class="field" for="location">Location</label>

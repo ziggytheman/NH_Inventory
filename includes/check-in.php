@@ -41,7 +41,7 @@ if ($dbSuccess) {
             $tCIO_SQLselect_Query = mysqli_query($dbSelected, $tCIO_SQLselect);
 
             if ($row = mysqli_fetch_assoc($tCIO_SQLselect_Query)) {
-                header("Location: /nhi/index.php?next=check-inprocess.php&barcode=$barcode");
+                header("Location: /index.php?next=check-inprocess.php&barcode=$barcode");
             } else {
                 $returnMsg = "Item  <b>" . $barcode . "</b> has not been checked out";
             }

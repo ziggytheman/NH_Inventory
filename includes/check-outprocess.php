@@ -195,7 +195,7 @@ if ($dbSuccess) {
                 $returnMsg = "Check out of Asset <strong>" . $barcode . "</strong>";
                 $returnMsg .= " was successful.";
                 $readonly = "readonly";
-                //        header("Location: /nhi/index.php?next=check-out.php");
+                //        header("Location: /index.php?next=check-out.php");
             } else {
                 $errorMsg = "FAILED to add insert CO data.<br />";
                 $errorMsg .= mysqli_error($dbSelected) . "<br /><br />";

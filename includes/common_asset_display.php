@@ -13,7 +13,11 @@ if ($row = mysqli_fetch_assoc($tAsset_SQLselect_Query)) {
                 $barcode = str_pad($r, 10, "0", STR_PAD_LEFT);
                 break;
             case "ass_has_barcode":
-                $hasBarcode = strtoupper($r);
+                if($r !== "") {
+                    $hasBarcode = strtoupper($r);
+                }else {
+                    $hasBarcode = "Y";
+                }
                 break;
             case "ass_type":
                 $assetType = $r;
