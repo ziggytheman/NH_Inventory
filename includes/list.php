@@ -1,5 +1,5 @@
 <?php
-include('includes/dbaccess.php');
+
 $returnMsg = "Enter Barcode to search or select Barcode to edit";
 
 if ($dbSuccess) {

@@ -15,7 +15,7 @@ $readonly = "";
  * and open the template in the editor.
  */
 ?>
-<form method="post" action="index.php?next=check-out.php" >
+<form method="post" action="index.php?content=assetCheckOut" >
     <div class="fieldSet">
         <fieldset>
             <legend>Asset Check-Out Information</legend>

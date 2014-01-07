@@ -105,13 +105,13 @@ if ($dbSuccess) {
 }
 ?>
 
-<form method="post" action="index.php?next=edit.php" >
+<form method="post" action="index.php?content=assetEdit" >
     <div class="fieldSet">
         <fieldset>
             <legend>Edit - Required Fields
-                <span class="links"><a href="index.php?next=maininsert.php&barcode=<?php echo $barcode; ?>">Maintenance</a></span>
-                <span class="links"><a href="index.php?next=check-inprocess.php&barcode=<?php echo $barcode; ?>">Check-In</a></span>
-                <span class="links"><a href="index.php?next=check-outprocess.php&barcode=<?php echo $barcode; ?>">Check-Out</a></span>	
+                <span class="links"><a href="index.php?content=assetMaintenanceInsert&barcode=<?php echo $barcode; ?>">Maintenance</a></span>
+                <span class="links"><a href="index.php?content=assetCheckInProcess&barcode=<?php echo $barcode; ?>">Check-In</a></span>
+                <span class="links"><a href="index.php?content=assetCheckOutProcess&barcode=<?php echo $barcode; ?>">Check-Out</a></span>	
 
             </legend>
             <input type="hidden" name="assetInserted" value="1"/>

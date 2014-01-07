@@ -7,7 +7,7 @@ $output = "";
 $table = "nhi_asset";
 
 $sql = mysqli_query($dbSelected, "SELECT * FROM $table");
-$filename = "nhs_dump_" . date("Y-m-d H:m:s") . ".csv";
+$filename = "nhs_dump_" . date("Y-m-d H:i:s") . ".csv";
 
 $indx = TRUE;
 

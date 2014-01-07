@@ -7,7 +7,7 @@ if (strtoupper(substr(gethostname(), 0, 6)) === 'NOSOUP') {
         'hostname' => 'localhost',
         'username' => 'root',
         'password' => 'tony',
-        'database' => 'nhs_Inventory');
+        'database' => 'nhs_inventory');
 } else {
     //echo 'This is a server not using Windows!';
     $db = array(

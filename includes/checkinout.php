@@ -227,7 +227,7 @@ if ($dbSuccess) {
 } //db SUCCESS
 ?>
 
-<form class ="assetDetails" method="post" action="index.php?next=checkinout.php" >
+<form class ="assetDetails" method="post" action="index.php?content=assetCheckInOut" >
     <div class="fieldSet">
         <fieldset>
             <legend>Asset Details</legend>

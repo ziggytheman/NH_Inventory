@@ -8,7 +8,7 @@
 $errorMsg ="";
 $returnMsg = "Enter barcode to perform maintenance";
 include('includes/fn_insert_validations.php');
-include('includes/dbaccess.php');
+
 if ($dbSuccess) {
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -25,7 +25,7 @@ if ($dbSuccess) {
             if (count(mysqli_fetch_assoc($tAsset_SQLselect_Query)) > 0) {
                 //if found display edit screen
 
-                header("Location: /index.php?next=maininsert.php&barcode=$barcode");
+                header("Location: /index.php?content=assetMaintenanceInsert&barcode=$barcode");
             } else {
             $errorMsg = dataError("barcode not found");
         }
@@ -36,7 +36,7 @@ if ($dbSuccess) {
     }
 }
 ?>
-<form method="post" action="index.php?next=maintenance.php" >
+<form method="post" action="index.php?content=assetMaintenance" >
     <div class="fieldSet">
         <fieldset>
             <legend>Asset Maintenance</legend>

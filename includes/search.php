@@ -5,9 +5,10 @@
  * and open the template in the editor.
  */
 include('includes/fn_insert_validations.php');
-include('includes/dbaccess.php');
+
 $errorMsg ="";
-$returnMsg = "Enter Barcode to search";
+//$returnMsg = "Enter Barcode to search";
+$returnMsg = "";
 if ($dbSuccess) {
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         //select barcode
@@ -23,19 +24,25 @@ if ($dbSuccess) {
             if (count(mysqli_fetch_assoc($tAsset_SQLselect_Query)) > 0) {
                 //if found display edit screen
 
-                header("Location: /index.php?next=edit.php&barcode=$barcode");
+                header("Location: /index.php?content=assetEdit&barcode=$barcode");
             } else {
 
-                header("Location: /index.php?next=add.php&barcode=$barcode");
+                header("Location: /index.php?content=assetAdd&barcode=$barcode");
             }
             // else display add screen
-        } else {
+        } 
+        else {
             $returnMsg = "Enter a Barcode to search";
         }
     }
+    if (($_SERVER["REQUEST_METHOD"] == "GET") && (isset($_GET["returnMsg"]))) {
+         $returnMsg = $_GET["returnMsg"];
+        }
+     $returnMsg .= " Enter a Barcode to search";
+     
 }
 ?>
-<form method="post" action="index.php?next=search.php" >
+<form method="post" action="index.php?content=assetSearch" >
     <div class="fieldSet">
         <fieldset>
             <legend>Barcode Search</legend>

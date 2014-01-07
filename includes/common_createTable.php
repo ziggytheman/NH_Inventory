@@ -33,7 +33,9 @@
         foreach ($row as $idx => $r) {
             if ($idx == "Barcode") {
                 $r = str_pad($r, 10, "0", STR_PAD_LEFT);
-                echo "      <td><a href=\"index.php?next=edit.php&barcode=$r\">$r</a></td>\n";
+                echo "      <td><a href=\"index.php?content=assetEdit&barcode=$r\">$r</a></td>\n";
+            }elseif ($idx === "Location") {
+                echo "      <td><a href=\"#\" onclick=\"filterFunction($r)\">$r</a></td>\n";
             } else
                 echo "      <td>$r</td>\n";
         }
@@ -44,3 +46,9 @@
     mysqli_free_result($list_SQLselect_Query);
 }
 ?>
+<script>
+function filterFunction($r) {
+    var oTable = $('#list').dataTable();
+    oTable.fnFilter($r);
+}
+</script>

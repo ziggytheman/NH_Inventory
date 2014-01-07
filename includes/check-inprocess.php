@@ -98,7 +98,7 @@ if ($dbSuccess) {
         $tCIO_SQLselect_Query = mysqli_query($dbSelected, $tCIO_SQLselect);
 
         if ($row = mysqli_fetch_assoc($tCIO_SQLselect_Query)) {
-   //         header("Location: /index.php?next=check-inprocess.php&barcode=$barcode");
+   //         header("Location: /index.php?content=assetCheckInProcess&barcode=$barcode");
         } else {
             $returnMsg = "Item  <b>" . $barcode . "</b> has not been checked out";
             $insert = "n";
@@ -141,13 +141,13 @@ if ($dbSuccess) {
 } //db SUCCESS
 ?>
 
-<form class ="assetDetails" method="post" action="index.php?next=check-inprocess.php" >
+<form class ="assetDetails" method="post" action="index.php?content=assetCheckInProcess" >
     <div class="fieldSet">
         <fieldset>
             <legend>Asset Details
-                <span class="links"><a href="index.php?next=edit.php&barcode=<?php echo $barcode ?>">Edit</a></span>
-                <span class="links"><a href="index.php?next=maininsert.php&barcode=<?php echo $barcode ?>">Maintenance</a></span>
- <!--               <span class="links"><a href="index.php?next=check-outprocess.php&barcode=<?php echo $barcode ?>">Check-Out</a></span> -->
+                <span class="links"><a href="index.php?content=assetEdit&barcode=<?php echo $barcode ?>">Edit</a></span>
+                <span class="links"><a href="index.php?content=assetMaintentnanceInsert&barcode=<?php echo $barcode ?>">Maintenance</a></span>
+ <!--               <span class="links"><a href="index.php?content=assetCheckOutProcess&barcode=<?php echo $barcode ?>">Check-Out</a></span> -->
             </legend>
 
             <input type="hidden" name="update" value="<?php echo $update; ?>"/>

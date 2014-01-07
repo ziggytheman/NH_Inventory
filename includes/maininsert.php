@@ -98,13 +98,13 @@ if ($dbSuccess) {
 } //db SUCCESS
 ?>
 
-<form class ="assetDetails" method="post" action="index.php?next=maininsert.php" >
+<form class ="assetDetails" method="post" action="index.php?content=assetMaintenanceInsert" >
     <div class="fieldSet">
         <fieldset>
             <legend>Asset Details
-                <span class="links"><a href="index.php?next=edit.php&barcode=<?php echo $barcode ?>">Edit</a></span>
-                <span class="links"><a href="index.php?next=check-in.php&barcode=<?php echo $barcode ?>">Check-In</a></span>
-                <span class="links"><a href="index.php?next=check-out.php&barcode=<?php echo $barcode ?>">Check-Out</a></span>
+                <span class="links"><a href="index.php?content=assertEdit&barcode=<?php echo $barcode ?>">Edit</a></span>
+                <span class="links"><a href="index.php?content=assetCheckIn&barcode=<?php echo $barcode ?>">Check-In</a></span>
+                <span class="links"><a href="index.php?content=assetCheckOut&barcode=<?php echo $barcode ?>">Check-Out</a></span>
 
             </legend>
 

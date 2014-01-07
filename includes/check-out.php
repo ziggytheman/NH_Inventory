@@ -6,7 +6,7 @@
  */
 $errorMsg = "";
 include('includes/fn_insert_validations.php');
-include('includes/dbaccess.php');
+
 if ($dbSuccess) {
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -38,7 +38,7 @@ if ($dbSuccess) {
                 if ($row = mysqli_fetch_assoc($tCIO_SQLselect_Query)) {
                     $returnMsg = "Asset $barcode already checked out";
                 } else {
-                    header("Location: /index.php?next=check-outprocess.php&barcode=$barcode");
+                    header("Location: /index.php?content=assetCheckOutProcess&barcode=$barcode");
                 }
             }else{
                 $returnMsg = "Item not found";
@@ -50,7 +50,7 @@ if ($dbSuccess) {
     }
 
 ?>
-<form method="post" action="index.php?next=check-out.php" >
+<form method="post" action="index.php?content=assetCheckOut" >
     <div class="fieldSet">
         <fieldset>
             <legend>Asset Check-Out</legend>

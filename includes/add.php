@@ -6,7 +6,7 @@ $ram = $pdate = $condition = $tlp = $notes = "";
 $barcodeError = $serialnoError = $locationError = $locationOtherError = "";
 $returnMsg = "Complete form to add a new asset";
 $hasBarcode = "Y";
-include('includes/dbaccess.php');
+
 if ($dbSuccess) {
     if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["barcode"])) {
         $barcode = clean_input($_GET["barcode"]);
@@ -136,6 +136,7 @@ if ($dbSuccess) {
             $assetType = $make = $model = $name = $os = $cpu = $hdsize = $serviceTag = "";
             $ram = $pdate = $condition = $tlp = $notes = "";
             $barcodeError = $serialnoError = $locationError = $locationOtherError = "";
+            header("Location: /index.php?content=assetSearch&returnMsg=$returnMsg");
         } else {
             $errorMsg = "FAILED to add new person.<br />";
             $errorMsg .= mysqli_error($dbSelected) . "<br />";
@@ -151,13 +152,13 @@ if ($dbSuccess) {
     include('includes/typeDropDown.php');
 }
 ?>
-<form method="post" action="index.php?next=add.php">
+<form method="post" action="index.php?content=assetAdd">
     <div class="fieldSet">
         <fieldset>
             <legend>Add - Required Fields
-                <span class="links"><a href="index.php?next=maininsert.php&barcode=<?php echo $barcode; ?>">Maintenance</a></span>
-                <span class="links"><a href="index.php?next=check-inprocess.php&barcode=<?php echo $barcode; ?>">Check-In</a></span>
-                <span class="links"><a href="index.php?next=check-outprocess.php&barcode=<?php echo $barcode; ?>">Check-Out</a></span>	
+                <span class="links"><a href="index.php?content=assetMaintenanceInsert&barcode=<?php echo $barcode; ?>">Maintenance</a></span>
+                <span class="links"><a href="index.php?content=assetCheckIn&barcode=<?php echo $barcode; ?>">Check-In</a></span>
+                <span class="links"><a href="index.php?content=assetCheckOut&barcode=<?php echo $barcode; ?>">Check-Out</a></span>	
             </legend>
             <input type="hidden" name="assetInserted" value="1"/>
             <p><label class="field" for="barcode">DPS Barcode</label>

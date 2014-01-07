@@ -53,11 +53,11 @@ header h1, h2 {
 .lhs_menu {
     width: 160px;
     float:left;
-
+    margin:0px 0px 0px 10px;
 } 
 #main_area {
-    margin: 0px 10px 10px 20px;
-    width: 760px;
+    margin: 0px 0px 0px 20px;
+    width: 770px;
     float: left;
     //    overflow-y: scroll; 
     //    height:600px;
@@ -70,13 +70,13 @@ header h1, h2 {
 #lhs_menu1 ul li {
     list-style: none;
 }
-footer {
+#message {
     clear:both;
-    margin:10px 0px 10px 180px;
+    margin:10px 0px 10px 0px;
     
-    width: 760px;
+    width: 960px;
 }
-footer p {
+#message p {
     background-color:blue;
     color:white;
     font-size:125%;

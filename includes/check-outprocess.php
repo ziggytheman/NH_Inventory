@@ -195,7 +195,7 @@ if ($dbSuccess) {
                 $returnMsg = "Check out of Asset <strong>" . $barcode . "</strong>";
                 $returnMsg .= " was successful.";
                 $readonly = "readonly";
-                //        header("Location: /index.php?next=check-out.php");
+                //        header("Location: /index.php?content=assetCheckOut");
             } else {
                 $errorMsg = "FAILED to add insert CO data.<br />";
                 $errorMsg .= mysqli_error($dbSelected) . "<br /><br />";
@@ -206,13 +206,13 @@ if ($dbSuccess) {
 } //db SUCCESS
 ?>
 
-<form class ="assetDetails" method="post" action="index.php?next=check-outprocess.php" >
+<form class ="assetDetails" method="post" action="index.php?content=assetCheckOutProcess" >
     <div class="fieldSet">
         <fieldset>
             <legend>Asset Details
-                <span class="links"><a href="index.php?next=edit.php&barcode=<?php echo $barcode ?>">Edit</a></span>
-                <span class="links"><a href="index.php?next=maininsert.php&barcode=<?php echo $barcode ?>">Maintenance</a></span>
-                <span class="links"><a href="index.php?next=check-inprocess.php&barcode=<?php echo $barcode ?>">Check-In</a></span>
+                <span class="links"><a href="index.php?content=assetEdit&barcode=<?php echo $barcode ?>">Edit</a></span>
+                <span class="links"><a href="index.php?content=assetMaintenanceInsert&barcode=<?php echo $barcode ?>">Maintenance</a></span>
+                <span class="links"><a href="index.php?content=assetCheckIn&barcode=<?php echo $barcode ?>">Check-In</a></span>
 
 
             </legend>

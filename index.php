@@ -1,9 +1,119 @@
-<!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
+<?php
+/* 	File:			index.php
+ *
+ * 	Folder:		root (htdocs)	
+ * 	By:			ARH
+ * 	Date:		2014-1-5
+ *
+ * 	This script is the HOMEPAGE for NHI
+ *
+ *
+ * ============================================================
+ */
+//	Secure Connection Script
+include('htconfig/dbConfig.php');
+include('includes/dbaccess.php');
+//	END	Secure Connection Script
+
+
+if ($dbSuccess) {
+    include_once('includes/fn_authorise.php');
+    //   include_once('includes/fn_strings.php');
+    //   include_once('includes/fn_formatting.php');
+    //  include_once('includes/fn_eMailLog.php');
+
+    $menuFile = '';
+    $contentFile = '';
+    $contentMsg = '';
+
+    //$loginAuthorised = ($_COOKIE["loginAuthorised"] == "loginAuthorised");
+    $loginAuthorised = filter_input(INPUT_COOKIE, 'loginAuthorised', FILTER_SANITIZE_SPECIAL_CHARS);
+
+    if ($loginAuthorised) {
+
+        $accessLevel = filter_input(INPUT_COOKIE, 'accessLevel', FILTER_SANITIZE_SPECIAL_CHARS);
+        $userID = filter_input(INPUT_COOKIE, 'userID', FILTER_SANITIZE_SPECIAL_CHARS);
+        $status = filter_input(INPUT_GET, 'status', FILTER_SANITIZE_SPECIAL_CHARS);
+
+        if (isset($status) AND ($status == "logout")) {
+            setcookie("loginAuthorised", "", time() - 7200);
+            header("Location: index.php");
+        } else {
+
+            //		This is where we manage CONTENT for LOGGED-IN users
+            $menuFile = 'includes/tp_nhiMenu.php';
+
+            $contentCode = filter_input(INPUT_GET, 'content', FILTER_SANITIZE_SPECIAL_CHARS);
+  
+            //  DO SOMETHING depending on the $contentCode.  
+            //		update code:   0905 Content management 
+            switch ($contentCode) {
+                case "assetSearch":
+                    $contentFile = "includes/search.php";
+                    break;
+                case "assetList":
+                    $contentFile = "includes/list.php";
+                    break;
+                case "assetAdd":
+                    $contentFile = "includes/add.php";
+                    break;
+                case "assetMaintenance":
+                    $contentFile = "includes/Maintenance.php";
+                    break;
+                case "assetMaintenanceHistory":
+                    $contentFile = "includes/mainhistory.php";
+                    break;
+                case "assetMaintenanceInsert":    
+                    $contentFile = "includes/maininsert.php";
+                    break;
+                case "assetCheckIn":
+                    $contentFile = "includes/check-in.php";
+                    break;
+                case "assetCheckOut":
+                    $contentFile = "includes/check-out.php";
+                    break;
+                case "assetCheckInOut":
+                    $contentFile = "includes/checkinout.php";
+                    break;                
+                case "assetCheckHistory":
+                    $contentFile = "includes/checkhistory.php";
+                    break;
+                case "assetCheckInProcess":
+                    $contentFile = "includes/check-inprocess.php";
+                    break;
+                case "assetCheckOutProcess":
+                    $contentFile = "includes/check-outprocess.php";
+                    break;
+                case "assetMaintenance":
+                    $contentFile = "includes/maintenance.php";
+                    break;
+                case "assetEdit":
+                    $contentFile = "includes/edit.php";
+                    break;
+                case "assetTestCheckout":
+                    $contentFile = "includes/testcheckout.php";
+                    break;
+                default:
+                    $contentFile = "includes/list.php";
+                    break;
+            }
+        }
+    } else {
+
+        $username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_SPECIAL_CHARS);
+        $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_SPECIAL_CHARS);
+        
+        if (userAuthorised($username, $password, $dbSelected)) {
+            header("Location: index.php");
+        } else {
+            $contentFile = 'includes/tp_loginForm.php';
+        }
+    }
+} else {
+    $contentMsg = 'No database connection.';
+}
+?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
     <head>
         <meta charset="UTF-8">
@@ -23,53 +133,50 @@ and open the template in the editor.
         <script type="text/javascript" charset="utf-8" 
         src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.min.js"></script>
         <script src="js/nhi.js"></script>
-
     </head>
     <body>
-        <header>
-            <h1 id="pageHeader">Inventory</h1>
-            <h2 id="pageTitle"></h2>
-        </header> <!--topheader -->
-        <div class="lhs_menu">
-            <ul>
-                <li id="active"><a href="#">Home</a></li>
-                <li> <a href="index.php?next=search.php">Search</a> </li>
-                <li> <a href="index.php?next=list.php">List</a> </li>
-                <li> <a href="index.php?next=add.php">Add</a> </li>
-                <li> <a href="index.php?next=maintenance.php">Maintenance</a> </li>
-                <li> <a href="index.php?next=mainhistory.php">Maintenance History</a> </li>
+    <header>
+        <h1 id="pageHeader">Inventory</h1>
+        <h2 id="pageTitle"></h2>
+        <div id="message">
+            <p><span id="returnMsg"></span></p>
+        </div>
 
-                <li> <a href="index.php?next=check-in.php">Check-In</a> </li>
-                <li> <a href="index.php?next=check-out.php">Check-Out</a> </li>
-                <li> <a href="index.php?next=checkhistory.php">Check History</a> </li>
-                <li id="active"><a href="#">File System</a></li>
-                <li> <a href="export.php">Export</a> </li>
-                <li> <a href="backup.php">Backup</a> </li>
-                <li> <a href="index.php?next=testcheckout.php">Check Out Test</a> </li>
-            </ul>
-        </div> <!--lhs_menu -->
+    </header>            
+    <div class="lhs_menu">
 
-        <div id="main_area">
-
-
+        <ul>
             <?php
-            $returnMsg = "";
-            include('htconfig/dbConfig.php');
-
-            if (isset($_GET["next"])) {
-                $location = "includes/" . $_GET["next"];
-            } else {
-                $location = "includes/list.php";
+            if (file_exists($menuFile)) {
+                include($menuFile);
             }
-
-
-            include($location);
-            unset($GLOBALS['next']);
             ?>
-        </div> <!--main_area -->
-        <footer>
-            <p><span class="returnMsg"><?php echo $returnMsg; ?></span></p>
-        </footer>
-    </body>
+        </ul>
+    </div>
+    <div id="main_area">
+        <?php
+        if (file_exists($contentFile)) {
+            include($contentFile);
+        }
+        
+        if (!empty($contentMsg)) {
+            echo $contentMsg;
+        }
+        ?>
+    </div><!-- end contentColumn -->
 
+
+
+    <footer>
+
+    </footer><!-- end footer -->
+
+</body>
 </html>
+<script>
+    $(document).ready(function() {
+
+        document.getElementById('returnMsg').innerHTML = "<?php echo $returnMsg; ?>";
+
+    });
+</script>

@@ -1,5 +1,4 @@
 <?php
-include('includes/dbaccess.php');
 $returnMsg = "Enter bar code or select barcode";
 
 if ($dbSuccess) {

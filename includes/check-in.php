@@ -8,7 +8,7 @@ $errorMsg = $returnMsg = "";
 $barcode = "";
 $returnMsg = "Enter Barcode to Check-In";
 include('includes/fn_insert_validations.php');
-include('includes/dbaccess.php');
+
 if ($dbSuccess) {
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -41,7 +41,7 @@ if ($dbSuccess) {
             $tCIO_SQLselect_Query = mysqli_query($dbSelected, $tCIO_SQLselect);
 
             if ($row = mysqli_fetch_assoc($tCIO_SQLselect_Query)) {
-                header("Location: /index.php?next=check-inprocess.php&barcode=$barcode");
+                header("Location: /index.php?content=assetCheckInProcess&barcode=$barcode");
             } else {
                 $returnMsg = "Item  <b>" . $barcode . "</b> has not been checked out";
             }
@@ -53,7 +53,7 @@ if ($dbSuccess) {
     }
 }
 ?>
-<form method="post" action="index.php?next=check-in.php" >
+<form method="post" action="index.php?content=assetCheckIn" >
     <div class="fieldSet">
         <fieldset>
             <legend>Asset Check-In</legend>
